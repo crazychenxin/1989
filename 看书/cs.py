@@ -1,9 +1,6 @@
-from urllib.request import urlopen
-from bs4 import BeautifulSoup
+import re
 
-html = urlopen("http://guba.eastmoney.com/")
-bso = BeautifulSoup(html,"html.parser")
+phoneNumRegex = re.compile(r'(\d\d\d)-(\d\d\d-\d\d\d\d)')
+mo = phoneNumRegex.search('My number is 415-555-4242.')
 
-for link in bso.findAll("a"):
-    if "href" in link.attrs:
-        print(link.attrs["href"])
+print(mo.group(1))
